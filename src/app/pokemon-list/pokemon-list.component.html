@@ -1,16 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
     <h2>Attrapez les tous !</h2>
-    <div class="list-group">
-      <button
-        class="list-group-item"
-        *ngFor="let book of pokemon; let i = index"
-        (click)="onViewPokemon(i)">
-        <h3 class="list-group-item-heading">
-          
-        </h3>
-        <p class="list-group-item-text"></p>
-      </button>
+    <div *ngFor= 'let pokemon of pokemon$'>
+      <h2>{{ pokemon.name }}</h2>
     </div>
   </div>
 </div>

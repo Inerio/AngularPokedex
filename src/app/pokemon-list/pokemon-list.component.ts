@@ -1,36 +1,24 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Pokemon } from '../models/Pokemon.model';
 import { Router } from '@angular/router';
-import { PokemonService } from '../services/pokemon.service';
+import { PokedexService } from '../services/pokedex.service';
 
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss']
 })
-export class PokemonListComponent implements OnInit, OnDestroy {
+export class PokemonListComponent implements OnInit {
 
-  pokemon: Pokemon[];
+  pokemon$: Pokemon[];
   pokemonSubscription: Subscription;
 
-  constructor(private pokemonService: PokemonService, private router: Router) { }
+  constructor(private pokedexService: PokedexService, private router: Router) { }
 
   ngOnInit() {
-    this.pokemonSubscription = this.pokemonService.pokemonSubject.subscribe(
-      (pokemon: Pokemon[]) => {
-        this.pokemon = pokemon;
-      }
-    );
-    this.pokemonService.emitPokemon();
-  }
-
-  onViewPokemon(id: number) {
-    this.router.navigate(['/pokemon', 'view', id]);
-  }
-
-  ngOnDestroy() {
-    this.pokemonSubscription.unsubscribe();
+    return this.pokedexService.getPokemonName()
+      .subscribe(data => this.pokemon$ = data);
   }
 
 }

@@ -7,13 +7,12 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { SinglePokemonComponent } from './pokemon-list/single-pokemon/single-pokemon.component';
-import { PokemonFormComponent } from './pokemon-list/pokemon-form/pokemon-form.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
-import { PokemonService } from './services/pokemon.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { PokedexService } from './services/pokedex.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SigninComponent,
     PokemonListComponent,
     SinglePokemonComponent,
-    PokemonFormComponent,
     HeaderComponent
   ],
   imports: [
@@ -34,8 +32,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
   providers: [
     AuthService,
-    PokemonService,
-    AuthGuardService
+    AuthGuardService,
+    PokedexService
   ],
   bootstrap: [AppComponent]
 })
